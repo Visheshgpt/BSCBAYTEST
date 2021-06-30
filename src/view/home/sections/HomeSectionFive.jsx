@@ -30,7 +30,7 @@ const HomeSectionFive = () => {
           <Row className='border-bottom border-secondary pb-5'>
             <Col>
               <div className='position-relative'>
-                <div className='d-none d-md-block bg-testing-1' />
+                <div className='bg-testing-2' />
                 <img
                   className='d-block w-auto-sm-100'
                   src='./assets/bc-image-1.png'
@@ -135,7 +135,7 @@ const HomeSectionFive = () => {
               style={{ gap: 30 }}
             >
               {imagesArr.map((data, i) => (
-                <div style={{ width: 120 }} key={i}>
+                <div style={{ width: 90 }} key={i}>
                   <img
                     className='w-100'
                     src={`./assets/bb-icon-${i}.png`}

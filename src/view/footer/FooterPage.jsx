@@ -1,8 +1,17 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const FooterPage = () => {
+  const location = useLocation();
+
+  const hideFooter =
+    location.pathname === '/reports' || location.pathname === '/wallet';
+
+  if (hideFooter) {
+    return null;
+  }
+
   const socialMediaArr = [
     { link: 'https://google.com' },
     { link: 'https://google.com' },

@@ -1,13 +1,23 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
+  const location = useLocation();
+
+  const hideHeader =
+    location.pathname === '/reports' || location.pathname === '/wallet';
+
+  if (hideHeader) {
+    return null;
+  }
+
   return (
     <>
-      <section className='position-sticky fixed-top bg-secondary py-3'>
-        <Container fluid='xxl'>
-          <div className='d-flex align-items-center'>
+      <section className='position-sticky fixed-top bg-color-5 py-3'>
+        <Container fluid='xxl' className='position-relative'>
+          <div className='bg-testing-1' />
+          <div className='d-flex align-items-center z-10'>
             <div>
               <Link to='/'>
                 <img className='logo-img' src='./assets/logo.png' alt='Logo' />
@@ -50,7 +60,7 @@ export const Navbar = () => {
         </Container>
       </section>
       {/* Mobile Navbar */}
-      <section className='bg-secondary py-3 fixed-bottom d-block d-md-none'>
+      <section className='bg-secondary py-2 fixed-bottom d-block d-md-none'>
         <div>
           <ul className='nav justify-content-around'>
             <li className='nav-item pe-lg-4'>

@@ -88,7 +88,7 @@ const HomeSectionThree = () => {
               <div className='px-0 col-10 col-lg-12 col-xxl-11 mx-auto'>
                 <Row className='row-cols-md-2 row-cols-lg-3 justify-content-center'>
                   <div className='p-2'>
-                    <Link className='btn-1 button-1 btn-warning w-100'>
+                    <Link className='btn-1 button-1 btn-color w-100'>
                       <img height={20} src='./assets/file-0.png' alt='file' />
                       <span className='ms-2 text-uppercase fw-bold text-small'>
                         Audit Reports
@@ -102,7 +102,7 @@ const HomeSectionThree = () => {
                     </Link>
                   </div>
                   <div className='p-2'>
-                    <Link className='btn-1 button-1 btn-warning w-100'>
+                    <Link className='btn-1 button-1 btn-color w-100'>
                       <img height={20} src='./assets/file-1.png' alt='file' />
                       <span className='ms-2 text-uppercase fw-bold text-small'>
                         Official Smart Contract
@@ -116,7 +116,7 @@ const HomeSectionThree = () => {
                     </Link>
                   </div>
                   <div className='p-2'>
-                    <Link className='btn-1 button-1 btn-warning w-100'>
+                    <Link className='btn-1 button-1 btn-color w-100'>
                       <img height={20} src='./assets/file-2.png' alt='file' />
                       <span className='ms-2 text-uppercase fw-bold text-small'>
                         Liquidity Locks

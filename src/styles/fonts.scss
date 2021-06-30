@@ -75,14 +75,29 @@ p {
 }
 
 .title-small {
-  font-weight: bold;
+  font-weight: 500;
   font-size: 18px;
   line-height: 150%;
+}
+
+.title-small-1 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .text-small {
   font-size: 14px;
   line-height: 21px;
+}
+
+.text-small-1 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 139%;
+  /* or 17px */
+
+  letter-spacing: 0.02em;
 }
 
 a {
@@ -96,4 +111,12 @@ button {
   font-weight: 600;
   font-size: 18px;
   line-height: 27px;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
 }

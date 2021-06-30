@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Image1 } from '../../../assets/main-image-1.svg';
 import { ReactComponent as Ellipse1 } from '../../../assets/Ellipse-1.svg';
 import { ReactComponent as Ellipse2 } from '../../../assets/Ellipse-2.svg';
 import { ReactComponent as Arrow } from '../../../assets/next.svg';
@@ -23,35 +22,39 @@ const HomeSectionOne = () => {
   ];
 
   return (
-    <section className='bg-color-2 text-white'>
+    <section className='bg-color-5 text-white'>
       <Container fluid='xxl' className='position-relative pt-5'>
-        <Row className='justify-content-between'>
-          <Col md={12} lg={6} className='mb-5 mb-xl-0'>
-            <div>
+        <Row className='justify-content-xl-between align-items-center'>
+          <Col md={12} lg={6} xl={5} className='mb-5 mb-xl-0'>
+            <div className='z-10 d-flex flex-column align-items-center align-items-lg-start text-center text-lg-start'>
               <div className='heading-primary mb-2'>
                 The <span className='text-primary'>BSC</span> Ecosystem
               </div>
-              <div className='text-white-2 fw-light heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-8 mb-4'>
+              <div className='text-white-2 fw-light heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4'>
                 Investing | Decentralized Launch Pad Token Minting | Lockers |
                 Analytics
               </div>
               <div className='d-flex flex-column flex-md-row mx-0'>
                 <div className='pe-md-2'>
-                  <Link className='btn-1 button-1 btn-warning w-100'>
+                  <Link className='btn-1 button-1 btn-color w-100'>
                     <img height={61} src='./assets/rocket.png' alt='rocket' />
-                    <span className='text-uppercase fw-bold'> Launch App</span>
-                    <i className='ms-3' style={{ height: 30, width: 18 }}>
-                      <Arrow />
-                    </i>
+                    <span className='text-uppercase fw-bold me-3'>
+                      {' '}
+                      Launch App
+                    </span>
                   </Link>
                 </div>
                 <div className='ps-md-2 mt-3 mt-md-0'>
                   <Link
+                    to='/wallet'
                     style={{ height: 60 }}
                     className='btn btn-outline-warning px-4 w-100'
                   >
                     <span className='text-uppercase'>Buy Now</span>
-                    <i className='ms-3' style={{ height: 30, width: 18 }}>
+                    <i
+                      className='ms-3 shake-horizontal'
+                      style={{ height: 30, width: 18 }}
+                    >
                       <Arrow />
                     </i>
                   </Link>
@@ -59,13 +62,31 @@ const HomeSectionOne = () => {
               </div>
             </div>
           </Col>
-          <Col md={12} lg={5} className='order-first order-lg-last'>
+          <Col md={12} lg={6} xl={7} className='order-first order-lg-last'>
             <div className='z-10' style={{ height: '100%' }}>
-              <Image1 />
+              <img
+                className='h-100 w-100 d-block'
+                src='./assets/bg-0.gif'
+                alt='..'
+              />
             </div>
+            {/* Start */}
+            <div
+              className='position-absolute end-0 bottom-0 d-none d-xl-block'
+              style={{ width: '38%' }}
+            >
+              <Ellipse1 />
+            </div>
+            <div
+              className='position-absolute end-0 bottom-0 d-none d-xl-block'
+              style={{ width: '26%' }}
+            >
+              <Ellipse2 />
+            </div>
+            {/* End */}
           </Col>
         </Row>
-        <div className='px-0 col-lg-8 mx-auto'>
+        <div className='px-0 col-lg-8 mx-auto mt-5'>
           <Row className='justify-content-center z-10 pb-5' style={{ gap: 15 }}>
             {boxArr.map((data, i) => (
               <div key={i} className='box-1 bg-color-2 text-small'>
@@ -102,17 +123,6 @@ const HomeSectionOne = () => {
             ))}
           </Row>
         </div>
-        {/* Start */}
-        <div
-          className='position-absolute end-0 bottom-0 d-none d-xl-block'
-          style={{ width: '30%' }}
-        >
-          <Ellipse1 />
-        </div>
-        <div className='position-absolute end-0 bottom-0 d-none d-xl-block'>
-          <Ellipse2 />
-        </div>
-        {/* End */}
       </Container>
     </section>
   );

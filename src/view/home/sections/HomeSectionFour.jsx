@@ -6,8 +6,8 @@ const HomeSectionFour = () => {
     <section className='bg-b-1'>
       <Container fluid='xxl' className='px-0 position-relative'>
         <img
-          className='position-absolute bottom-0 end-0 w-auto-sm-100'
-          src='./assets/bg-3.png'
+          className='position-absolute bottom-0 end-0 w-auto-sm-100 height-1'
+          src='./assets/bg-3.gif'
           alt='..'
         />
         <Container className='py-5 z-10'>
