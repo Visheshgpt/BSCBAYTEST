@@ -6,7 +6,7 @@ import './styles/main.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-   <Router>
+    <Router>
       <App />
     </Router>
   </React.StrictMode>,

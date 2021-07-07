@@ -1,3 +1,7 @@
+* {
+  scroll-behavior: smooth;
+}
+
 html {
   height: 100%;
   overflow-x: hidden;
@@ -9,11 +13,30 @@ body {
   flex-direction: column;
 }
 
+.main-container {
+  overflow-x: hidden !important;
+}
+
+.overflow-x {
+  overflow-x: auto;
+}
+
 a:focus,
 button:focus,
-.btn:focus {
-  box-shadow: unset;
-  outline: 0;
+.btn:focus,
+.form-select:focus,
+input {
+  box-shadow: unset !important;
+  outline: 0 !important;
+}
+
+.form-select {
+  background-image: url(../assets/arrow-down-1.png);
+  background-size: 12px;
+
+  option {
+    background-color: $color-dark-2;
+  }
 }
 
 .rounded-lg-2 {
@@ -34,7 +57,37 @@ button:focus,
 .icon-hover {
   transition: all 0.3s ease;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.06);
+  }
+}
+
+.icon-hover-1 {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.02);
+    background-image: var(--bs-gradient) !important;
+  }
+}
+
+.icon-hover-3 {
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  &:hover {
+    background-color: #000;
+    background-image: var(--bs-gradient) !important;
+  }
+}
+
+.icon-hover-4 {
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #383a41;
+    background-image: var(--bs-gradient) !important;
   }
 }
 
@@ -55,7 +108,7 @@ button:focus,
     max-width: 100%;
     padding: 0 50px;
   }
-  @media screen and (min-width: 1800px) {
+  @media screen and (min-width: 1900px) {
     max-width: 1500px;
   }
 }
@@ -101,6 +154,7 @@ button:focus,
 
 .nav-link {
   color: $color-white;
+  &:focus,
   &.active,
   &:hover {
     color: $color-primary;
@@ -156,25 +210,33 @@ a {
 }
 
 .bg-testing-1 {
+  display: block;
   position: absolute;
   height: 150px;
   width: 100px;
   top: 0;
-  background: #ffffff;
+  background: $color-white;
   mix-blend-mode: screen;
   filter: blur(170px);
   transform: rotate(7.52deg);
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 }
 
 .bg-testing-2 {
+  display: block;
   position: absolute;
   height: 200px;
   width: 200px;
   top: 0;
-  background: #ffffff;
+  background: $color-white;
   mix-blend-mode: screen;
   filter: blur(150px);
   transform: rotate(-53.48deg);
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 }
 
 .text-number-1 {
@@ -186,7 +248,7 @@ a {
 
   color: $color-primary;
 
-  text-shadow: 3px 3px 0px #222426;
+  text-shadow: 3px 3px 0px $color-dark;
 }
 
 .logo-img {
@@ -213,4 +275,35 @@ a {
 
 .opacity-8 {
   opacity: 0.85;
+}
+
+.dropdown-toggle::after {
+  background-image: url(../assets/arrow-down-1.png);
+  border: 0;
+  height: 9px;
+  width: 13px;
+  background-repeat: no-repeat;
+}
+
+.form-check-input,
+.form-check-input:focus,
+.form-check-input:checked {
+  background-color: unset;
+  border-color: $color-white;
+}
+
+.box-information {
+  background-color: $color-dark-2;
+  border-radius: 10px;
+  color: $color-white;
+  box-shadow: inset 0px -10px 0px rgba(0, 0, 0, 0.25);
+  &.active {
+    background-color: #1b1b20;
+    color: $color-primary;
+  }
+}
+
+.scroll-settings {
+  margin-top: -100px;
+  padding-top: 100px;
 }

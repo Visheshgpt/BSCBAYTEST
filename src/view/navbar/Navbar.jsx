@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -14,34 +14,38 @@ export const Navbar = () => {
 
   return (
     <>
-      <section className='position-sticky fixed-top bg-color-5 py-3'>
+      <section
+        id='navbar'
+        className='position-sticky fixed-top bg-secondary py-3'
+      >
         <Container fluid='xxl' className='position-relative'>
           <div className='bg-testing-1' />
           <div className='d-flex align-items-center z-10'>
-            <div>
+            <div className='d-flex align-items-end justify-content-center mb-2'>
               <Link to='/'>
-                <img className='logo-img' src='./assets/logo.png' alt='Logo' />
+                <img className='logo-img' src='/assets/logo.png' alt='Logo' />
               </Link>
             </div>
             <div className='ms-auto d-none d-md-flex align-items-center'>
               <ul className='nav'>
                 <li className='nav-item pe-lg-4'>
-                  <NavLink className='nav-link' to='/services'>
+                  <Link to='/information' className='nav-link'>
                     Services
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className='nav-item pe-lg-4'>
-                  <NavLink className='nav-link' to='/investment'>
+                  <a href='#investment' className='nav-link'>
                     Investment
-                  </NavLink>
+                  </a>
                 </li>
                 <li className='nav-item pe-lg-4'>
-                  <NavLink className='nav-link' to='/about'>
-                    About us
-                  </NavLink>
+                  <Link className='nav-link'>About us</Link>
                 </li>
                 <li className='nav-item'>
-                  <Link className='btn btn-outline-primary text-white'>
+                  <Link
+                    to='/wallet/step-one'
+                    className='btn btn-outline-primary text-white fw-500'
+                  >
                     Launch app
                   </Link>
                 </li>
@@ -49,7 +53,10 @@ export const Navbar = () => {
             </div>
             {/* Mobile button */}
             <div className='ms-auto d-flex d-md-none align-items-center'>
-              <Link className='btn btn-sm btn-outline-primary text-white'>
+              <Link
+                to='/wallet/step-one'
+                className='btn btn-sm btn-outline-primary text-white fw-500'
+              >
                 <small>
                   <small>Launch app</small>
                 </small>
@@ -64,19 +71,19 @@ export const Navbar = () => {
         <div>
           <ul className='nav justify-content-around'>
             <li className='nav-item pe-lg-4'>
-              <NavLink className='nav-link' to='/services'>
+              <Link className='nav-link'>
                 <small>Services</small>
-              </NavLink>
+              </Link>
             </li>
             <li className='nav-item pe-lg-4'>
-              <NavLink className='nav-link' to='/investment'>
+              <a href='#investment' className='nav-link'>
                 <small> Investment</small>
-              </NavLink>
+              </a>
             </li>
             <li className='nav-item pe-lg-4'>
-              <NavLink className='nav-link' to='/about'>
+              <Link className='nav-link'>
                 <small> About us</small>
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </div>

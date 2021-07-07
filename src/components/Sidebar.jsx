@@ -36,7 +36,7 @@ export const Sidebar = () => {
       <button
         onClick={() => setShow(!show)}
         type='button'
-        className='sidebar-btn rounded-circle btn-color'
+        className='sidebar-btn rounded-circle btn  btn-color'
       >
         <Menu />
       </button>
@@ -112,16 +112,16 @@ export const Sidebar = () => {
         >
           {socialMediaArr.map((data, i) => (
             <a
-              style={{ width: 20 }}
               key={i}
               href={data.link}
               target='_blank'
               rel='noreferrer'
-              className='mx-2 d-flex justify-content-center'
+              className='mx-2 d-flex justify-content-center icon-hover-3 '
             >
               <img
                 className='d-block'
                 height={18}
+                width={18}
                 src={`./assets/icons/b-icon-${i}.svg`}
                 alt='..'
               />

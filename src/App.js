@@ -5,7 +5,10 @@ import { Navbar } from './view/navbar/Navbar.jsx';
 
 function App() {
   return (
-    <main className='bg-white scroll-box-auto shadow border-start border-end border-dark vh-100 px-0 container-xxl d-flex flex-column overflow-auto'>
+    <main
+      id='scrolly-main'
+      className='main-container bg-white scroll-box-auto shadow border-start border-end border-dark vh-100 px-0 container-xxl d-flex flex-column overflow-auto'
+    >
       <ScrollToTop />
       <Navbar />
       <Routes />

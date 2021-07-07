@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Accordion, Button } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 const WalletSectionOne = () => {
   const boxArr = [
@@ -113,7 +113,7 @@ const WalletSectionOne = () => {
                     <span className='text-primary opacity-8'>BNB</span> 2.00
                   </div>
                   <div>
-                    <button type='button' className='px-3 py-2 btn-color'>
+                    <button type='button' className='px-3 py-2 btn btn-color'>
                       <span className='text-uppercase title-small-1'>
                         Claim reward
                       </span>
@@ -164,7 +164,7 @@ const WalletSectionOne = () => {
               <div key={i} className='col-12 col-md-4 p-1'>
                 <button
                   type='button'
-                  className='btn w-100 text-start box-hover h-100 d-flex bg-secondary p-3 justify-content-between rounded-lg-2'
+                  className='btn w-100 text-start box-hover h-100 d-flex bg-secondary p-3 justify-content-between rounded-lg-2 icon-hover-1'
                 >
                   <div>
                     <img
@@ -195,7 +195,7 @@ const WalletSectionOne = () => {
           {totalArr.map((data) => (
             <div
               key={data.key}
-              className='flex-fill border rounded-lg-2 p-2 border-secondary mb-2'
+              className='flex-fill border rounded-lg-2 p-2 border-secondary mb-2 icon-hover-4'
             >
               <img
                 height={17}
@@ -239,53 +239,45 @@ const WalletSectionOne = () => {
         {/* === */}
         {poolArr.map((data, i) => (
           <div>
-            <Accordion>
-              <div className='border-bottom border-light pt-2 pb-3'>
-                <header>
-                  <ul className='nav overflow-auto flex-nowrap align-items-center justify-content-between text-small-1'>
-                    <li className='col-5 col-md-auto'>
-                      <div className='text-primary opacity-8 title-small-1'>
-                        Earn Rabbit
-                      </div>
-                      <div className='text-light'>Stake Cake</div>
-                    </li>
-                    <li className='col-5 col-md-auto'>
-                      <div className='text-light'>Rabbit Earned</div>{' '}
-                      <div>12.10</div>
-                    </li>
-                    <li className='col-5 col-md-auto'>
-                      <div className='text-light'> APR</div> <div>454.477%</div>
-                    </li>
-                    <li className='col-5 col-md-auto'>
-                      <div className='text-light'>Total Staked</div>{' '}
-                      <div>262,017 Cake</div>
-                    </li>
-                    <li className='col-5 col-md-auto'>
-                      <div className='text-light'>Ends in</div>{' '}
-                      <div>1,724,612 blocks</div>
-                    </li>
-                    <li className='col-5 col-md-auto'>
-                      <Accordion.Toggle
-                        className='p-0 text-light'
-                        as={Button}
-                        variant='..'
-                        eventKey='0'
-                      >
+            <div className='border-bottom border-light pt-2 pb-3'>
+              <header>
+                <ul className='nav overflow-auto flex-nowrap align-items-center justify-content-between text-small-1'>
+                  <li className='col-5 col-md-auto'>
+                    <div className='text-primary opacity-8 title-small-1'>
+                      Earn Rabbit
+                    </div>
+                    <div className='text-light'>Stake Cake</div>
+                  </li>
+                  <li className='col-5 col-md-auto'>
+                    <div className='text-light'>Rabbit Earned</div>{' '}
+                    <div>12.10</div>
+                  </li>
+                  <li className='col-5 col-md-auto'>
+                    <div className='text-light'> APR</div> <div>454.477%</div>
+                  </li>
+                  <li className='col-5 col-md-auto'>
+                    <div className='text-light'>Total Staked</div>{' '}
+                    <div>262,017 Cake</div>
+                  </li>
+                  <li className='col-5 col-md-auto'>
+                    <div className='text-light'>Ends in</div>{' '}
+                    <div>1,724,612 blocks</div>
+                  </li>
+                  <li className='col-5 col-md-auto dropdown-container'>
+                    <Dropdown>
+                      <Dropdown.Toggle className='p-0 text-light' variant='..'>
                         <span className='text-small fw-normal'>Details</span>
-                        <img
-                          className='d-block ms-2'
-                          src='./assets/arrow-down-1.png'
-                          alt='..'
-                        />
-                      </Accordion.Toggle>
-                    </li>
-                  </ul>
-                </header>
-                <Accordion.Collapse eventKey='0'>
-                  <div className='mt-2'>Hello! I'm the body</div>
-                </Accordion.Collapse>
-              </div>
-            </Accordion>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu className='position-fixed bg-dark bg-gradient'>
+                        <Dropdown.Item>Reinvest</Dropdown.Item>
+                        <Dropdown.Item>Claim Rewards</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </li>
+                </ul>
+              </header>
+            </div>
           </div>
         ))}
       </section>

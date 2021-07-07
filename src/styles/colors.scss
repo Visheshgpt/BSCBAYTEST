@@ -14,6 +14,7 @@ $color-warning: #f1c342;
 $color-white: #fff;
 $color-light: #b0b3bd;
 $color-black: #000;
+$color-dark: #222426;
 $color-dark-2: #292b32;
 
 .text-white-2 {
@@ -29,7 +30,7 @@ $color-dark-2: #292b32;
 }
 
 .bg-black {
-  background-color: #222426;
+  background-color: $color-dark;
 }
 
 .bg-color-2 {
@@ -62,5 +63,16 @@ $color-dark-2: #292b32;
   &:hover {
     background: linear-gradient(180deg, #ffbf20 0%, #ffd366 100%);
     color: #000;
+  }
+}
+
+.dropdown-container {
+  .dropdown-item {
+    color: $color-light;
+    font-size: 14px;
+  }
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background-color: $color-primary;
   }
 }
