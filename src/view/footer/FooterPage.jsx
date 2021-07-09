@@ -4,6 +4,9 @@ import { Link, useLocation } from 'react-router-dom';
 import ScrollAnimation from 'react-animate-on-scroll';
 
 const FooterPage = () => {
+ 
+  var link;
+
   const location = useLocation();
 
   const hideFooter =
@@ -22,6 +25,28 @@ const FooterPage = () => {
     { link: 'https://google.com' },
     { link: 'https://google.com' },
   ];
+
+  let address = window.sessionStorage.getItem("walletAddress");
+ 
+  if (address) {
+
+    console.log("yes");
+
+    link =            <Link className='nav-link' to='/wallet'>
+                  Launch app
+                      </Link>
+  }
+  else {
+ 
+    console.log("no");
+
+  link =   <Link className='nav-link' to='/wallet/step-one'>
+              Launch app
+             </Link>
+
+  }
+
+
 
   return (
     <footer className='bg-color-2 text-white py-5'>
@@ -61,9 +86,7 @@ const FooterPage = () => {
                   <Link className='nav-link'>About us</Link>
                 </li>
                 <li className='nav-item mx-md-3'>
-                  <Link className='nav-link' to='/wallet/step-one'>
-                    Launch app
-                  </Link>
+                    {link}
                 </li>
               </ul>
             </div>

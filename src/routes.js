@@ -6,6 +6,7 @@ import LaunchStepOne from './view/launch-steps/LaunchStepOne';
 import LaunchStepThree from './view/launch-steps/LaunchStepThree';
 import LaunchStepTwo from './view/launch-steps/LaunchStepTwo';
 import WalletPage from './view/wallet/WalletPage';
+// import Dapp from './components/Dapp'
 
 const Routes = () => {
   return (
@@ -16,6 +17,7 @@ const Routes = () => {
       <Route exact path='/wallet/step-three' component={LaunchStepThree} />
       <Route exact path='/wallet' component={WalletPage} />
       <Route exact path='/information' component={InformationPage} />
+      {/* <Route exact path='/wallet/dashboard' component={Dapp} /> */}
     </Switch>
   );
 };

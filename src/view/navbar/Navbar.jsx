@@ -3,6 +3,10 @@ import { Container } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
+
+  var link;
+  var linkmobile;
+
   const location = useLocation();
 
   const hideHeader =
@@ -11,6 +15,31 @@ export const Navbar = () => {
   if (hideHeader) {
     return null;
   }
+
+
+  let address = window.sessionStorage.getItem("walletAddress");
+ 
+  if (address) {
+
+    console.log("yes");
+
+    link =     <Link to='/wallet' className='btn btn-outline-primary text-white fw-500'>Launch app</Link>
+    linkmobile =  <Link to='/wallet' className='btn btn-sm btn-outline-primary text-white fw-500'>
+                          <small>  <small>Launch app</small> </small></Link>
+  
+  }
+  
+  else {
+ 
+    console.log("no");
+
+    link =  <Link to='/wallet/step-one' className='btn btn-outline-primary text-white fw-500'>Launch app</Link>
+    linkmobile =  <Link to='/wallet/step-one' className='btn btn-sm btn-outline-primary text-white fw-500'>
+                          <small>  <small>Launch app</small> </small></Link>
+
+  }
+
+
 
   return (
     <>
@@ -42,25 +71,16 @@ export const Navbar = () => {
                   <Link className='nav-link'>About us</Link>
                 </li>
                 <li className='nav-item'>
-                  <Link
-                    to='/wallet/step-one'
-                    className='btn btn-outline-primary text-white fw-500'
-                  >
-                    Launch app
-                  </Link>
+                  
+                   {link}
+
                 </li>
               </ul>
             </div>
             {/* Mobile button */}
             <div className='ms-auto d-flex d-md-none align-items-center'>
-              <Link
-                to='/wallet/step-one'
-                className='btn btn-sm btn-outline-primary text-white fw-500'
-              >
-                <small>
-                  <small>Launch app</small>
-                </small>
-              </Link>
+                  
+                 {linkmobile} 
             </div>
             {/* Mobile button */}
           </div>
