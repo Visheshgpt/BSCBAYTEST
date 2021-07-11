@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import swal from 'sweetalert';
-// import Web3Modal from "web3modal";
+import Web3Modal from "web3modal";
 
 import abi from './BSCBAYabi.json'
 // import POOLabi from './POOLabi.json'
@@ -16,7 +16,7 @@ const getWeb3Client = async () => {
   
   const loginType = localStorage.getItem("loginType");
 
-  if (window.ethereum || window.BinanceChain || Web3.givenProvider) {
+  if (window.ethereum || window.BinanceChain || Web3.givenProvider || (loginType == "walletconnect")) {
 
     if (loginType === "metamask") {
 
@@ -28,7 +28,7 @@ const getWeb3Client = async () => {
      var id = await web3Client.eth.net.getId();
         
     // return web3Client; 
-     if (id == 56 || id == 97){
+     if (id == 56){
       return web3Client;
      }
      else {
@@ -74,29 +74,56 @@ const getWeb3Client = async () => {
      else if (loginType === "walletconnect")
      
      {   
-         //  Create WalletConnect Provider
-            const provider = new WalletConnectProvider({
 
-              rpc: {
-               1 : "https://bsc-dataseed.binance.org/",
-               56: "https://bsc-dataseed.binance.org/",
-               97: "https://data-seed-prebsc-1-s1.binance.org:8545"
-             },
-          });
+      
+      // const providerOptions = {
+      //   walletconnect: {
+      //     package: WalletConnectProvider, // required
+      //     options: {
+      //       infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
+      //     }
+      //   }
+      // };
+      
+      // const web3Modal = new Web3Modal({
+      //   network: "mainnet", // optional
+      //   cacheProvider: true, // optional
+      //   providerOptions // required
+      // });
+      
+      // const provider = await web3Modal.connect();
+      
+      // const web3 = new Web3(provider);  
+      //   return web3;
+
+
+// -------------------------- running code -----------------------
+
+         //  Create WalletConnect Provider
+         const provider = new WalletConnectProvider({
+
+          rpc: {
+           1 : "https://bsc-dataseed.binance.org/",
+           56: "https://bsc-dataseed.binance.org/",
+           97: "https://data-seed-prebsc-1-s1.binance.org:8545"
+         },
+//             infuraId: "27e484dcd9e3efcfd25a83a78777cdf1"
+      });
 
            //   //  Enable session (triggers QR Code modal)
          await provider.enable();
          const web3Client = new Web3(provider);
          var id = await web3Client.eth.net.getId();
-         
-         if (id == 56 ){
-          console.log("id",id);
-          return web3Client;
-         }
-         else{
-          swal("Change Network to Binance Mainet");
-         }
-
+         console.log("netid", id);
+         return web3Client;
+        //  if (id == 56 ){
+        //   console.log("id",id);
+        //   return web3Client;
+        //  }
+        //  else{
+        //   swal("Change Network to Binance Mainet");
+        //  }
+// ---------------------------------------------------
          
     } 
 
@@ -115,7 +142,6 @@ const getWeb3Client = async () => {
   }
 
 };
-
 
 async function  handleEthereum() {
   const provider= await detectEthereumProvider();
@@ -334,8 +360,8 @@ const reInvest = async (web3) => {
 
   const contractService = {
     getWeb3Client,
-    claimBNB,
-    reInvest,
+   // claimBNB,
+    // reInvest,
     // disruptiveTransfertokens,
     // claimextraBNB
   };

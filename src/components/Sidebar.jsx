@@ -1,7 +1,8 @@
 import React,{useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
- 
+import Web3Modal from "web3modal";
+// import Cookies from 'universal-cookie';
 
 import Web3 from 'web3'
 import BSCBAYabi from '../shared/BSCBAYabi.json'
@@ -127,7 +128,41 @@ export const Sidebar = () => {
   {
         if (window.sessionStorage.getItem("walletName") == "walletconnect") {
   
-        const provider = new WalletConnectProvider({
+  
+
+          // const providerOptions = {
+          //   walletconnect: {
+          //     package: WalletConnectProvider, // required
+          //     options: {
+          //      rpc: {
+          //            1 : "https://bsc-dataseed.binance.org/",
+          //            56: "https://bsc-dataseed.binance.org/",
+          //            97: "https://data-seed-prebsc-1-s1.binance.org:8545"
+          //        // ...
+          //      },
+          //       //infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
+          //     }
+          //   }
+          // };
+         
+          // const web3Modal = new Web3Modal({
+          //  //  network: "mainnet", // optional
+          //   cacheProvider: true, // optional
+          //   providerOptions // required
+          // });
+          
+          // await web3Modal.clearCachedProvider();
+          // // await web3Modal.close();
+
+
+
+
+
+
+
+
+ //   ---------------working code ------------------         
+          const provider = new WalletConnectProvider({
   
           rpc: {
             1 : "https://bsc-dataseed.binance.org/",
@@ -138,6 +173,7 @@ export const Sidebar = () => {
         });
   
          await provider.disconnect();
+ /// --------------------------------------------       
   
        }
   

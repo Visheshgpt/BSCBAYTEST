@@ -40,7 +40,7 @@ const FooterPage = () => {
  
     console.log("no");
 
-  link =   <Link className='nav-link' to='/wallet/step-one'>
+  link =   <Link className='nav-link' to='/wallet/step-two'>
               Launch app
              </Link>
 

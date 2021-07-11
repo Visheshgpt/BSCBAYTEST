@@ -79,7 +79,7 @@ const HomeSectionOne = () => {
 
   link =  <Link
                     
-    to='/wallet/step-one'
+    to='/wallet/step-two'
       className='btn-1 button-1 btn-color w-100'
     >
       
@@ -268,7 +268,7 @@ const HomeSectionOne = () => {
    boxArr[5].number = "BNB " + Number(rewardhardCap);
    boxArr[6].number = "$ " + (distributedBnb*oneBNBprice).toFixed(2);   
    boxArr[7].number = "$ " + (totalreinvested*priceperToken).toFixed(2);
-   boxArr[8].number = (totalreflectionFees * 0.0167).toFixed(0);
+   boxArr[8].number = (totalreflectionFees * 0.167).toFixed(0);
 
 
 
@@ -369,7 +369,7 @@ const HomeSectionOne = () => {
                   <img
                     className='d-block mb-1'
                     height={24}
-                    src={`./assets/icons/box-icon-${i}.png`}
+                    src={`./assets/icons/animicon-${i}.gif`}
                     alt={data.name}
                   />
                   <span className='text-capitalize text-white-2'>

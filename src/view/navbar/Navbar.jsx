@@ -21,7 +21,7 @@ export const Navbar = () => {
  
   if (address) {
 
-    console.log("yes");
+    
 
     link =     <Link to='/wallet' className='btn btn-outline-primary text-white fw-500'>Launch app</Link>
     linkmobile =  <Link to='/wallet' className='btn btn-sm btn-outline-primary text-white fw-500'>
@@ -31,10 +31,10 @@ export const Navbar = () => {
   
   else {
  
-    console.log("no");
+    
 
-    link =  <Link to='/wallet/step-one' className='btn btn-outline-primary text-white fw-500'>Launch app</Link>
-    linkmobile =  <Link to='/wallet/step-one' className='btn btn-sm btn-outline-primary text-white fw-500'>
+    link =  <Link to='/wallet/step-two' className='btn btn-outline-primary text-white fw-500'>Launch app</Link>
+    linkmobile =  <Link to='/wallet/step-two' className='btn btn-sm btn-outline-primary text-white fw-500'>
                           <small>  <small>Launch app</small> </small></Link>
 
   }
