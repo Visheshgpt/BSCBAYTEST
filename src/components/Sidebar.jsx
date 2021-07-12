@@ -1,16 +1,16 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
-import Web3Modal from "web3modal";
+import Web3Modal from 'web3modal';
 // import Cookies from 'universal-cookie';
 
-import Web3 from 'web3'
-import BSCBAYabi from '../shared/BSCBAYabi.json'
+import Web3 from 'web3';
+import BSCBAYabi from '../shared/BSCBAYabi.json';
 
 // import contractService from '../../shared/LMcontractservice'
-import WalletConnectProvider from "@walletconnect/web3-provider";
+import WalletConnectProvider from '@walletconnect/web3-provider';
 
-import CoinGecko from 'coingecko-api'
+import CoinGecko from 'coingecko-api';
 
 // icons
 import { ReactComponent as BNBIcon } from '../assets/BNBIcon.svg';
@@ -23,11 +23,10 @@ import { ReactComponent as Icon4 } from '../assets/sidebar-icons/icon-4.svg';
 import { ReactComponent as Icon5 } from '../assets/sidebar-icons/icon-5.svg';
 
 export const Sidebar = () => {
-
-  const [LMBalanceuser,setLMBalanceuser] = useState(0);
-  const [oneBNBprice,setoneBNBprice] = useState(0);
-  const [LPbnb,setLPbnb] = useState(0);
-  const [LMbalanceLPpool,setLMbalanceLPpool] = useState(0);
+  const [LMBalanceuser, setLMBalanceuser] = useState(0);
+  const [oneBNBprice, setoneBNBprice] = useState(0);
+  const [LPbnb, setLPbnb] = useState(0);
+  const [LMbalanceLPpool, setLMbalanceLPpool] = useState(0);
 
   const [show, setShow] = React.useState(false);
   const linksArr = [
@@ -47,145 +46,134 @@ export const Sidebar = () => {
     { link: 'https://google.com' },
   ];
 
-
-
-  var priceperToken = ((( (1000000) * (LPbnb) ) / (LMbalanceLPpool) * oneBNBprice))/(1000000); 
-  var address = window.sessionStorage.getItem("walletAddress");
-
+  var priceperToken =
+    (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
+  var address = window.sessionStorage.getItem('walletAddress');
 
   function web3apis() {
-    
-
     // let address = window.sessionStorage.getItem("walletAddress");
-    
-     address = window.sessionStorage.getItem("walletAddress");
 
-     const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
-     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
- 
-     var contractABI = BSCBAYabi;
-     var contractAddress ="0x8b4202C2026C77e99f84805644bdcE2B9541598c";
-     var contract = new web3.eth.Contract(contractABI,contractAddress);
+    address = window.sessionStorage.getItem('walletAddress');
 
-    
+    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+
+    var contractABI = BSCBAYabi;
+    var contractAddress = '0x8b4202C2026C77e99f84805644bdcE2B9541598c';
+    var contract = new web3.eth.Contract(contractABI, contractAddress);
+
     // LM BALANCE user
-    contract.methods.balanceOf(address).call().then(balance => {
-      ////console.log()(balance);
-      var gwei = web3.utils.toBN(balance).toString();
-      var tokens = web3.utils.toWei(gwei,"Gwei");
-      setLMBalanceuser( Number(web3.utils.fromWei(tokens, 'ether')) )
-        }
-          )
+    contract.methods
+      .balanceOf(address)
+      .call()
+      .then((balance) => {
+        ////console.log()(balance);
+        var gwei = web3.utils.toBN(balance).toString();
+        var tokens = web3.utils.toWei(gwei, 'Gwei');
+        setLMBalanceuser(Number(web3.utils.fromWei(tokens, 'ether')));
+      });
 
-    // get token in LP 
-    contract.methods.balanceOf("0xDd25d5c356Ff41feB5846c6E2960995925ED7938").call().then(balance => {
-      ////console.log(balance);
-      var gwei = web3.utils.toBN(balance).toString();
-      var tokens = web3.utils.toWei(gwei,"Gwei");
-      setLMbalanceLPpool( Number(web3.utils.fromWei(tokens, 'ether')) )
-  
-      })    
+    // get token in LP
+    contract.methods
+      .balanceOf('0xDd25d5c356Ff41feB5846c6E2960995925ED7938')
+      .call()
+      .then((balance) => {
+        ////console.log(balance);
+        var gwei = web3.utils.toBN(balance).toString();
+        var tokens = web3.utils.toWei(gwei, 'Gwei');
+        setLMbalanceLPpool(Number(web3.utils.fromWei(tokens, 'ether')));
+      });
 
+    // get TotalBNB in liquidity Pool
+    var wrappednBNBABI = [
+      {
+        constant: true,
+        inputs: [{ name: '', type: 'address' }],
+        name: 'balanceOf',
+        outputs: [{ name: '', type: 'uint256' }],
+        payable: false,
+        stateMutability: 'view',
+        type: 'function',
+      },
+    ];
+    var wrappedBNBcontractAddress =
+      '0xae13d989dac2f0debff460ac112a837c89baa7cd';
 
-    // get TotalBNB in liquidity Pool 
-    var wrappednBNBABI = [{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
-    var wrappedBNBcontractAddress = "0xae13d989dac2f0debff460ac112a837c89baa7cd";
-    
-    var wrappedBNBcontract = new web3.eth.Contract(wrappednBNBABI,wrappedBNBcontractAddress);   
-    
-    wrappedBNBcontract.methods.balanceOf("0xDd25d5c356Ff41feB5846c6E2960995925ED7938").call().then(balance => {
-        
+    var wrappedBNBcontract = new web3.eth.Contract(
+      wrappednBNBABI,
+      wrappedBNBcontractAddress
+    );
+
+    wrappedBNBcontract.methods
+      .balanceOf('0xDd25d5c356Ff41feB5846c6E2960995925ED7938')
+      .call()
+      .then((balance) => {
         var tokens = web3.utils.toBN(balance).toString();
-        setLPbnb( Number(web3.utils.fromWei(tokens, 'ether')) )
+        setLPbnb(Number(web3.utils.fromWei(tokens, 'ether')));
         //console.log("lpbnb",LPbnb);
-        }
-        )
+      });
 
-
-        // fetch latest 1 BNB price
-        const CoinGeckoClient = new CoinGecko();
-        // fetch price of 1 BNB
-        CoinGeckoClient.simple.price({
-          ids: ['binancecoin'],
-          vs_currencies: ['usd'],
-      }).then(data => {
-        setoneBNBprice( Number(data.data.binancecoin.usd) )
+    // fetch latest 1 BNB price
+    const CoinGeckoClient = new CoinGecko();
+    // fetch price of 1 BNB
+    CoinGeckoClient.simple
+      .price({
+        ids: ['binancecoin'],
+        vs_currencies: ['usd'],
       })
-          
-        
+      .then((data) => {
+        setoneBNBprice(Number(data.data.binancecoin.usd));
+      });
   }
 
+  useEffect(() => {
+    web3apis();
+  });
 
-  useEffect(()=>{
-  
-    web3apis()
-   
-  })
-   
+  async function logoutUser() {
+    if (window.sessionStorage.getItem('walletName') == 'walletconnect') {
+      // const providerOptions = {
+      //   walletconnect: {
+      //     package: WalletConnectProvider, // required
+      //     options: {
+      //      rpc: {
+      //            1 : "https://bsc-dataseed.binance.org/",
+      //            56: "https://bsc-dataseed.binance.org/",
+      //            97: "https://data-seed-prebsc-1-s1.binance.org:8545"
+      //        // ...
+      //      },
+      //       //infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
+      //     }
+      //   }
+      // };
 
+      // const web3Modal = new Web3Modal({
+      //  //  network: "mainnet", // optional
+      //   cacheProvider: true, // optional
+      //   providerOptions // required
+      // });
 
-  async function logoutUser()  
-  {
-        if (window.sessionStorage.getItem("walletName") == "walletconnect") {
-  
-  
+      // await web3Modal.clearCachedProvider();
+      // // await web3Modal.close();
 
-          // const providerOptions = {
-          //   walletconnect: {
-          //     package: WalletConnectProvider, // required
-          //     options: {
-          //      rpc: {
-          //            1 : "https://bsc-dataseed.binance.org/",
-          //            56: "https://bsc-dataseed.binance.org/",
-          //            97: "https://data-seed-prebsc-1-s1.binance.org:8545"
-          //        // ...
-          //      },
-          //       //infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
-          //     }
-          //   }
-          // };
-         
-          // const web3Modal = new Web3Modal({
-          //  //  network: "mainnet", // optional
-          //   cacheProvider: true, // optional
-          //   providerOptions // required
-          // });
-          
-          // await web3Modal.clearCachedProvider();
-          // // await web3Modal.close();
+      //   ---------------working code ------------------
+      const provider = new WalletConnectProvider({
+        rpc: {
+          1: 'https://bsc-dataseed.binance.org/',
+          56: 'https://bsc-dataseed.binance.org/',
+          97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+        },
+      });
 
+      await provider.disconnect();
+      /// --------------------------------------------
+    }
 
-
-
-
-
-
-
- //   ---------------working code ------------------         
-          const provider = new WalletConnectProvider({
-  
-          rpc: {
-            1 : "https://bsc-dataseed.binance.org/",
-            56: "https://bsc-dataseed.binance.org/",
-            97: "https://data-seed-prebsc-1-s1.binance.org:8545"
-          },
-  
-        });
-  
-         await provider.disconnect();
- /// --------------------------------------------       
-  
-       }
-  
-   localStorage.removeItem("provider");
-   window.sessionStorage.removeItem("walletAddress");
-   window.sessionStorage.removeItem("walletName");
-   window.location.assign("/"); 
-  
+    localStorage.removeItem('provider');
+    window.sessionStorage.removeItem('walletAddress');
+    window.sessionStorage.removeItem('walletName');
+    window.location.assign('/');
   }
-
-
-
 
   return (
     <>
@@ -232,14 +220,17 @@ export const Sidebar = () => {
                     Your Balance
                   </div>
                   <div className='title-small fw-normal'>
-                    BSCB {LMBalanceuser.toFixed(2)} 
+                    BSCB {LMBalanceuser.toFixed(2)}
                   </div>
                 </div>
               </li>
               <li className='nav-item py-3'>
                 <p className='mb-0 '>
                   <div className='text-light'>Your Address</div>
-                  <div className='text-truncate'> {address.slice(0,20) + ". . ." } </div>
+                  <div className='text-truncate'>
+                    {' '}
+                    {address.slice(0, 20) + '. . .'}{' '}
+                  </div>
                 </p>
               </li>
               <li className='nav-item py-3 w-100 align-self-baseline'>

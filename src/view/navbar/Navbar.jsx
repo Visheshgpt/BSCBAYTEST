@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import LaunchStepTwo from '../launch-steps/LaunchStepTwo';
+import LaunchStepThree from '../launch-steps/LaunchStepThree';
 
 export const Navbar = () => {
+  const [show2, setShow2] = useState(false);
+  const [show3, setShow3] = useState(false);
+
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
+  const handleClose3 = () => setShow3(false);
+  const handleShow3 = () => (setShow3(true), setShow2(false));
 
   var link;
   var linkmobile;
@@ -16,33 +26,51 @@ export const Navbar = () => {
     return null;
   }
 
+  let address = window.sessionStorage.getItem('walletAddress');
 
-  let address = window.sessionStorage.getItem("walletAddress");
- 
   if (address) {
-
-    
-
-    link =     <Link to='/wallet' className='btn btn-outline-primary text-white fw-500'>Launch app</Link>
-    linkmobile =  <Link to='/wallet' className='btn btn-sm btn-outline-primary text-white fw-500'>
-                          <small>  <small>Launch app</small> </small></Link>
-  
+    link = (
+      <Link to='/wallet' className='btn btn-outline-primary text-white fw-500'>
+        Launch app
+      </Link>
+    );
+    linkmobile = (
+      <Link
+        to='/wallet'
+        className='btn btn-sm btn-outline-primary text-white fw-500'
+      >
+        <small>
+          {' '}
+          <small>Launch app</small>{' '}
+        </small>
+      </Link>
+    );
+  } else {
+    link = (
+      <Link
+        onClick={handleShow2}
+        className='btn btn-outline-primary text-white fw-500'
+      >
+        Launch app
+      </Link>
+    );
+    linkmobile = (
+      <Link
+        onClick={handleShow2}
+        className='btn btn-sm btn-outline-primary text-white fw-500'
+      >
+        <small>
+          {' '}
+          <small>Launch app</small>{' '}
+        </small>
+      </Link>
+    );
   }
-  
-  else {
- 
-    
-
-    link =  <Link to='/wallet/step-two' className='btn btn-outline-primary text-white fw-500'>Launch app</Link>
-    linkmobile =  <Link to='/wallet/step-two' className='btn btn-sm btn-outline-primary text-white fw-500'>
-                          <small>  <small>Launch app</small> </small></Link>
-
-  }
-
-
 
   return (
     <>
+      <LaunchStepTwo onClick={handleShow3} show={show2} onHide={handleClose2} />
+      <LaunchStepThree show={show3} onHide={handleClose3} />
       <section
         id='navbar'
         className='position-sticky fixed-top bg-secondary py-3'
@@ -70,17 +98,12 @@ export const Navbar = () => {
                 <li className='nav-item pe-lg-4'>
                   <Link className='nav-link'>About us</Link>
                 </li>
-                <li className='nav-item'>
-                  
-                   {link}
-
-                </li>
+                <li className='nav-item'>{link}</li>
               </ul>
             </div>
             {/* Mobile button */}
             <div className='ms-auto d-flex d-md-none align-items-center'>
-                  
-                 {linkmobile} 
+              {linkmobile}
             </div>
             {/* Mobile button */}
           </div>
